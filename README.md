@@ -1,69 +1,56 @@
-<div align="center">
-
-  <h1><code>wasm-pack-template</code></h1>
-
-  <strong>A template for kick starting a Rust and WebAssembly project using <a href="https://github.com/rustwasm/wasm-pack">wasm-pack</a>.</strong>
-
-  <p>
-    <a href="https://travis-ci.org/rustwasm/wasm-pack-template"><img src="https://img.shields.io/travis/rustwasm/wasm-pack-template.svg?style=flat-square" alt="Build Status" /></a>
-  </p>
-
-  <h3>
-    <a href="https://rustwasm.github.io/docs/wasm-pack/tutorials/npm-browser-packages/index.html">Tutorial</a>
-    <span> | </span>
-    <a href="https://discordapp.com/channels/442252698964721669/443151097398296587">Chat</a>
-  </h3>
-
-  <sub>Built with 🦀🕸 by <a href="https://rustwasm.github.io/">The Rust and WebAssembly Working Group</a></sub>
-</div>
-
 ## About
+A visualization of the gradient descent method. It's first main focus were getting a fast working prototype
+utilizing the mathbox² library combined with a Rust WebAssembly Model library.
 
-[**📚 Read this template tutorial! 📚**][template-docs]
+This project is part of a series of projects trying to visualize some maths or computer science algorithms.
+The series' main goal is trying out and learning to work with different libraries and (web-)technologies.
 
-This template is designed for compiling Rust libraries into WebAssembly and
-publishing the resulting package to NPM.
+## Prerequisities
+You will need the following tools installed on your System:
 
-Be sure to check out [other `wasm-pack` tutorials online][tutorials] for other
-templates and usages of `wasm-pack`.
+[rustup](https://www.rust-lang.org/tools/install)
+  - a tool called cargo will be installed with rustup. It is Rust's dependency manager.
+  - it will also install rustc, which is the rust compiler
+[npm](https://www.npmjs.com/get-npm)
+[wasm-pack](https://rustwasm.github.io/wasm-pack/installer)
 
-[tutorials]: https://rustwasm.github.io/docs/wasm-pack/tutorials/index.html
-[template-docs]: https://rustwasm.github.io/docs/wasm-pack/tutorials/npm-browser-packages/index.html
+I trust you can figure out how to install those tools with their representive documentations.
 
-## 🚴 Usage
+## Quickstart Guide
+(only tested on linux)
 
-### 🐑 Use `cargo generate` to Clone this Template
+To build this projects there are actually a few steps to be taken. Obviously first Clone this repo. Install the Prerequisities.
+Move your terminal to the projects folder. Then execute this command:
 
-[Learn more about `cargo generate` here.](https://github.com/ashleygwilliams/cargo-generate)
+        wasm-pack build
 
-```
-cargo generate --git https://github.com/rustwasm/wasm-pack-template.git --name my-project
-cd my-project
-```
+This compiles automatically downloads all Rust dependencies and compiles your Rust code into WebAssembly, creates all the necessary
+js bindings and puts it all together into the "/pkg" subdirectory.
 
-### 🛠️ Build with `wasm-pack build`
+Next is gonna be the JavaScript part. Go into the www folder and execute:
 
-```
-wasm-pack build
-```
+        npm install
 
-### 🔬 Test in Headless Browsers with `wasm-pack test`
+npm now installs all the dependencies and dev-dependencies. We are almost ready now. But we'll have to do a manual tweak in the mathbox²
+library ourselves. Go into your "www/node_modules/mathbox/build" folder and open the file called "mathbox-bundle.js". Here you'll want to
+move the following code from the top of the file to the very bottom of it:
 
-```
-wasm-pack test --headless --firefox
-```
+        // browserify support
+        
+        if ( typeof module === 'object' ) {
+        
+	        module.exports = THREE;
+        
+	}
 
-### 🎁 Publish to NPM with `wasm-pack publish`
+This will make sure that the "THREE" Object will be available correctly outside of the module's scope. This is an ES6 thing.
+Now you can build the Javascript part of the project:
 
-```
-wasm-pack publish
-```
+        npm run-script build
+	npm start
 
-## 🔋 Batteries Included
+and with that start a local dev server that'll listen on "https://localhost:8080"
+If everything works: nice! Well done! :)
 
-* [`wasm-bindgen`](https://github.com/rustwasm/wasm-bindgen) for communicating
-  between WebAssembly and JavaScript.
-* [`console_error_panic_hook`](https://github.com/rustwasm/console_error_panic_hook)
-  for logging panic messages to the developer console.
-* [`wee_alloc`](https://github.com/rustwasm/wee_alloc), an allocator optimized
-  for small code size.
+## Contributing
+If you want to contribute just leave a message for me in Github or wait until I got the Pull Request configuration done :).
