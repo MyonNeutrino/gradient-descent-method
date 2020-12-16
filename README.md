@@ -11,7 +11,9 @@ You will need the following tools installed on your System:
 [rustup](https://www.rust-lang.org/tools/install)
   - a tool called cargo will be installed with rustup. It is Rust's dependency manager.
   - it will also install rustc, which is the rust compiler
+  
 [npm](https://www.npmjs.com/get-npm)
+
 [wasm-pack](https://rustwasm.github.io/wasm-pack/installer)
 
 I trust you can figure out how to install those tools with their representive documentations.
