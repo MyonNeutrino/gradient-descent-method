@@ -35,6 +35,6 @@
   },
   "dependencies": {
     "mathbox": "^0.1.0",
-    "wasm-lin-opt": "file:../pkg"
+    "wasm-gdm": "file:../pkg"
   }
 }

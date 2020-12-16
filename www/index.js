@@ -1,4 +1,4 @@
-import * as wasm from "wasm-lin-opt";
+import * as wasm from "wasm-gdm";
 import THREE,* as mb from "mathbox";
 
 var mathbox = mathBox({

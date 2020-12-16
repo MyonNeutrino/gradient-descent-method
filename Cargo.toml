@@ -1,5 +1,5 @@
 [package]
-name = "lin-opt-mb"
+name = "gradient-descent-method"
 version = "0.1.0"
 authors = ["chrifl <christopher.fleischer@vcat.de>"]
 edition = "2018"
