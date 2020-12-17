@@ -1,4 +1,4 @@
-import * as wasm from "wasm-gdm";
+import * as wasm from "gradient-descent-method";
 import THREE,* as mb from "mathbox";
 
 var mathbox = mathBox({

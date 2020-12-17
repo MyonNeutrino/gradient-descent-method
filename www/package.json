@@ -34,7 +34,7 @@
     "copy-webpack-plugin": "^5.0.0"
   },
   "dependencies": {
-    "mathbox": "^0.1.0",
-    "wasm-gdm": "file:../pkg"
+    "gradient-descent-method": "file:../pkg",
+    "mathbox": "^0.1.0"
   }
 }
